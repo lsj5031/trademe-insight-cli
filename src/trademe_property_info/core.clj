@@ -25,7 +25,7 @@
       (decode (:body @resp)))))
 
 (def cli-options
-  [["-k" "--api-key APIKEY" "API KEY FROM GOOGLE"
+  [["-k" "--api-key APIKEY" "API KEY FROM GOOGLE"]
    ["-a" "--address ADDRESS" "ADDRESS"]])
 
 (defn -main
@@ -33,6 +33,7 @@
   (let [{:keys [options arguments errors summary]} (parse-opts args cli-options)]
     (when-not errors
       (let [{:keys [api-key address]} options]
-        (-> (get-place-id address api-key)
+        (some->
+         (get-place-id address api-key)
             (get-property-data-guid)
             (get-property-info))))))
