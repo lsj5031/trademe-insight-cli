@@ -35,5 +35,5 @@
       (let [{:keys [api-key address]} options]
         (some->
          (get-place-id address api-key)
-            (get-property-data-guid)
-            (get-property-info))))))
+         (get-property-data-guid)
+         (get-property-info))))))
